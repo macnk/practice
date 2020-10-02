@@ -1,0 +1,114 @@
+/* STACK OPERATIONS - WHOLE 
+---------------------------------------------------
+1. CREATE EMPTY STACK 
+2. IS FULL 
+3. IS EMPTY
+4. PUSH ELEMENT 
+5. POP ELEMENT
+6. DISPLAY (PRINT STACK) 
+---------------------------------------------------
+*/
+#include<stdio.h>
+#include<stdlib.h>
+#define max 10 
+
+int count = 0 ;
+
+// create a stack - structure of a stack 
+struct stack 
+{
+    int items [max];
+    int top ;
+};
+typedef struct stack st;
+
+// create EMPTY STACK
+void createemptystack(st *s)
+{
+    // initialize top = - 1 
+    s->top = -1;
+}
+
+// check if IS FULL 
+int isfull(st *s)
+{
+    if(s->top == max - 1 )
+    return 1;
+    else 
+    return 0;
+}
+
+// check if IS EMPTY
+int isempty(st *s)
+{
+    if(s->top == -1 )
+    return 1;
+    else 
+    return 0;
+}
+
+// PUSH ELEMENT onto STACK 
+void push(st *s , int value)
+{
+    //check if stack is FULL
+    if(isfull(s))
+    {
+        printf("stack is full");
+    }
+    else 
+    {
+        //top increment 
+        s->top++;
+        //asssign top value to value 
+        s->items[s->top] = value ;
+    }
+    count++ ;
+}
+
+// POP ELEMENT from stack
+void pop(st *s) 
+{
+    //check is stack is empty 
+    if(isempty(s))
+    {
+        printf("stack is empty");
+    }
+    else 
+    {
+        //pop out top value 
+        printf("\n%d element pop out" , s->items[s->top]);
+        //decrement top 
+        s->top-- ;
+    }
+    count--;
+}
+
+// DISPLAY fucntion 
+void display(st *s)
+{
+    printf("stack elements :");
+    for(int i = 0 ; i < count ; i++)
+    {
+        printf("%d " , s->items[i]);
+    }
+}
+
+// driver code 
+int main()
+{
+    // memory allocation 
+    st *s = (st *) malloc(sizeof(st));
+    
+    // call fucntin to create stack 
+    createemptystack(s) ;
+    
+    // push & pop 
+    push(s , 2);
+    push(s, 7) ;
+    push(s, 8);
+   display(s);
+    pop(s);
+    printf("\n") ;
+    display(s) ;
+    
+}
